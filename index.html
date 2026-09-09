@@ -2,7 +2,8 @@
 <html lang="es" class="dark h-full">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#020617">
     <title>Curso Seguridad y Salud en el Trabajo - Grupo #3</title>
     
     <!-- Fonts & Icons -->
@@ -17,6 +18,9 @@
             darkMode: 'class',
             theme: {
                 extend: {
+                    screens: {
+                        xs: '400px',
+                    },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
@@ -75,6 +79,41 @@
             margin-top: auto;
             margin-bottom: auto;
         }
+
+        /* h-screen (100vh) no se ajusta a la barra dinámica de navegadores móviles
+           (Safari/Chrome en iOS/Android); 100dvh sigue el viewport visible real. */
+        @supports (height: 100dvh) {
+            body.h-screen {
+                height: 100dvh;
+            }
+        }
+
+        /* Respeta zonas seguras en dispositivos con notch/isla dinámica */
+        header.glass-header {
+            padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right));
+        }
+        footer.glass-header {
+            padding-left: max(0.75rem, env(safe-area-inset-left));
+            padding-right: max(0.75rem, env(safe-area-inset-right));
+            padding-bottom: max(0.625rem, env(safe-area-inset-bottom));
+        }
+
+        /* En móviles horizontales (poca altura) el header/footer fijos dejan
+           muy poco espacio útil: se compactan para ganar área de lectura */
+        @media (max-height: 480px) and (orientation: landscape) {
+            header.glass-header {
+                padding-top: 0.375rem;
+                padding-bottom: 0.375rem;
+            }
+            header.glass-header p.hidden.sm\:block {
+                display: none;
+            }
+            footer.glass-header {
+                padding-top: 0.375rem;
+                padding-bottom: 0.375rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans h-screen flex flex-col overflow-hidden selection:bg-sky-500 selection:text-white">
@@ -101,7 +140,7 @@
             </div>
 
             <!-- Jump Menu Modal Button -->
-            <button id="open-grid-btn" class="p-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-slate-300 hover:text-white transition" title="Ver índice de diapositivas">
+            <button id="open-grid-btn" class="min-w-[44px] min-h-[44px] flex items-center justify-center bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-slate-300 hover:text-white transition" title="Ver índice de diapositivas">
                 <i class="fa-solid fa-th-large"></i>
             </button>
         </div>
@@ -154,7 +193,7 @@
 
         <!-- SLIDE 2: CARACTERIZACIÓN DEL RIESGO LOCATIVO -->
         <section class="slide-content w-full max-w-5xl mx-auto space-y-6 hidden" data-slide="2">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 02</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Caracterización del Contexto Ocupacional</h2>
@@ -207,7 +246,7 @@
 
         <!-- SLIDE 3: CÁLCULO E INTERPRETACIÓN DE LA MORBILIDAD -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="3">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 03</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Indicadores Epidemiológicos I: Morbilidad Ocupacional</h2>
@@ -232,7 +271,7 @@
                         <div class="text-xs text-sky-400 font-semibold uppercase tracking-wider">Fórmula General de Morbilidad</div>
                         
                         <!-- Visual Fraction Box -->
-                        <div class="flex items-center justify-center gap-2 md:gap-3 text-xs md:text-sm font-semibold text-slate-200">
+                        <div class="flex flex-wrap items-center justify-center gap-2 md:gap-3 text-xs md:text-sm font-semibold text-slate-200">
                             <span class="text-sky-300 font-bold hidden sm:inline">Tasa Morbilidad</span>
                             <span>=</span>
                             <div class="inline-flex flex-col items-center px-2">
@@ -245,7 +284,7 @@
                         <div class="border-t border-slate-800/80 pt-4">
                             <div class="text-xs text-slate-400 mb-3">Sustitución con datos del caso (Alimentos del Valle S.A.):</div>
                             
-                            <div class="flex items-center justify-center gap-3 font-mono text-base">
+                            <div class="flex flex-wrap items-center justify-center gap-3 font-mono text-base">
                                 <div class="inline-flex flex-col items-center px-3">
                                     <span class="pb-1 border-b-2 border-emerald-500 text-amber-400 font-bold text-lg">15</span>
                                     <span class="pt-1 text-slate-300 font-bold">150</span>
@@ -291,7 +330,7 @@
 
         <!-- SLIDE 4: CÁLCULO E INTERPRETACIÓN DE LA INCIDENCIA -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="4">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 04</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Indicadores Epidemiológicos II: Incidencia Acumulada</h2>
@@ -313,7 +352,7 @@
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
                         <div class="text-xs font-semibold text-sky-400 uppercase tracking-wider">A) Cálculo Basado en Población Inicial Total (N = 150)</div>
                         
-                        <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-semibold">
+                        <div class="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm font-semibold">
                             <span class="text-sky-300 font-bold">IA</span>
                             <span>=</span>
                             <div class="inline-flex flex-col items-center px-2">
@@ -331,7 +370,7 @@
                         <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider">B) Ajuste Fino Epidemiológico (Población Susceptible Real)</div>
                         <p class="text-[11px] text-slate-400 leading-normal">Excluyendo 3 casos preexistentes al inicio &rarr; Trabajadores en riesgo real = 150 - 3 = <strong class="text-amber-300">147</strong>.</p>
                         
-                        <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-semibold">
+                        <div class="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm font-semibold">
                             <span class="text-amber-300 font-bold">IA<sub class="text-[10px]">ajustada</sub></span>
                             <span>=</span>
                             <div class="inline-flex flex-col items-center px-2">
@@ -370,7 +409,7 @@
 
         <!-- SLIDE 5: PREVALENCIA DE PERÍODO VS PREVALENCIA PUNTUAL -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="5">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 05</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Indicadores Epidemiológicos III: Prevalencia de Período vs. Puntual</h2>
@@ -392,7 +431,7 @@
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
                         <div class="text-[11px] text-slate-400 text-center font-semibold uppercase tracking-wider">Casos Totales en el Año / Población Expuesta</div>
                         
-                        <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-semibold">
+                        <div class="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm font-semibold">
                             <div class="inline-flex flex-col items-center px-2">
                                 <span class="pb-1 border-b-2 border-sky-500 text-sky-300 font-bold">15 casos totales</span>
                                 <span class="pt-1 text-slate-400">150 trabajadores</span>
@@ -419,7 +458,7 @@
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
                         <div class="text-[11px] text-slate-400 text-center font-semibold uppercase tracking-wider">Lesionados Activos al 31/12 / Población Expuesta</div>
 
-                        <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-semibold">
+                        <div class="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm font-semibold">
                             <div class="inline-flex flex-col items-center px-2">
                                 <span class="pb-1 border-b-2 border-rose-500 text-rose-400 font-bold">5 lesionados activos</span>
                                 <span class="pt-1 text-slate-400">150 trabajadores</span>
@@ -450,7 +489,7 @@
 
         <!-- SLIDE 6: TABLA COMPARATIVA DE INDICADORES -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="6">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 06</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Análisis Comparativo e Interrelación de Indicadores</h2>
@@ -572,7 +611,7 @@
 
         <!-- SLIDE 7: TRÍADA EPIDEMIOLÓGICA -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="7">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 07</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Tríada Epidemiológica Ocupacional</h2>
@@ -626,7 +665,7 @@
 
         <!-- SLIDE 8: HISTORIA NATURAL DEL ACCIDENTE -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="8">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 08</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Historia Natural del Evento Ocupacional</h2>
@@ -670,7 +709,7 @@
 
         <!-- SLIDE 9: MODELO DE CAUSALIDAD (QUESO SUIZO) -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="9">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 09</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Cadena Epidemiológica y Modelo de Causalidad</h2>
@@ -714,7 +753,7 @@
 
         <!-- SLIDE 10: NIVELES DE PREVENCIÓN -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="10">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 10</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Niveles de Prevención en Salud Ocupacional</h2>
@@ -771,7 +810,7 @@
 
         <!-- SLIDE 11: JERARQUÍA DE CONTROLES DE INGENIERÍA -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="11">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 11</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Jerarquía de Controles de Seguridad Ocupacional</h2>
@@ -831,7 +870,7 @@
 
         <!-- SLIDE 12: PLAN ESTRATÉGICO DE INTERVENCIÓN -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="12">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 12</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Plan Estratégico de Intervención Sistemática</h2>
@@ -887,7 +926,7 @@
 
         <!-- SLIDE 13: COSTOS DE LA NO PREVENCIÓN -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="13">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 13</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Costos de la No Prevención (Modelo Iceberg)</h2>
@@ -940,7 +979,7 @@
 
         <!-- SLIDE 14: CONCLUSIONES Y RECOMENDACIONES -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="14">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 14</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Conclusiones Basadas en Evidencia Epidemiológica</h2>
@@ -980,7 +1019,7 @@
 
         <!-- SLIDE 15: REFERENCIAS BIBLIOGRÁFICAS (APA 7) -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="15">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-2">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 15</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">Referencias Bibliográficas y Marco Académico</h2>
@@ -1000,7 +1039,7 @@
                         </span>
                         <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
                     </button>
-                    <div class="accordion-content p-4 space-y-3 bg-slate-950/40 border-t border-slate-800/60 text-xs text-slate-300">
+                    <div class="accordion-content p-4 space-y-3 bg-slate-950/40 border-t border-slate-800/60 text-xs text-slate-300 hidden">
                         <div class="pl-4 border-l-2 border-sky-500 space-y-1">
                             <p class="font-mono text-[11px] text-slate-200">International Organization for Standardization. (2018).</p>
                             <p class="italic text-slate-300">Occupational health and safety management systems — Requirements with guidance for use (ISO Standard No. 45001:2018).</p>
@@ -1088,7 +1127,7 @@
             <div class="p-4 bg-slate-900/90 border border-slate-800 rounded-xl text-xs text-slate-400 flex items-center gap-3">
                 <i class="fa-solid fa-graduation-cap text-sky-400 text-xl flex-shrink-0"></i>
                 <div>
-                    <span class="text-slate-200 font-bold block mb-0.5">Sustento Académico de Posgrado:</span>
+                    <span class="text-slate-200 font-bold block mb-0.5">Sustento Académico:</span>
                     Las citas y referencias cumplen estrictamente el formato APA 7.ª edición y respaldan los cálculos de incidencia, prevalencia, tríada epidemiológica e intervenciones de ingeniería.
                 </div>
             </div>
@@ -1106,8 +1145,8 @@
             </button>
 
             <!-- Texto central adaptativo -->
-            <div class="text-[10px] md:text-xs text-slate-400 text-center flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-3 overflow-hidden px-1">
-                <span class="font-medium text-slate-300 truncate max-w-[150px] xs:max-w-[200px] sm:max-w-none">&copy; 2026 Luis Miguel Guerrero</span>
+            <div class="text-[10px] md:text-xs text-slate-400 text-center flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-3 px-1">
+                <span class="font-medium text-slate-300">&copy; 2026 Luis Miguel Guerrero. Reservados todos los derechos.</span>
                 <span class="hidden md:inline text-slate-600">|</span>
                 <span class="hidden md:inline"><kbd class="px-1.5 py-0.5 bg-slate-900 border border-slate-800 rounded text-[10px] text-slate-300">&larr;</kbd> <kbd class="px-1.5 py-0.5 bg-slate-900 border border-slate-800 rounded text-[10px] text-slate-300">&rarr;</kbd> Para navegar</span>
             </div>
@@ -1127,7 +1166,7 @@
                 <h3 class="text-lg font-bold text-white flex items-center gap-2">
                     <i class="fa-solid fa-th-large text-sky-400"></i> Índice General de Diapositivas
                 </h3>
-                <button id="close-grid-btn" class="p-2 text-slate-400 hover:text-white">
+                <button id="close-grid-btn" class="min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-400 hover:text-white">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
