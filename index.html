@@ -69,12 +69,18 @@
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Asegura el centrado vertical sin cortar la parte superior al hacer scroll */
+        .slide-content {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans h-full flex flex-col justify-between overflow-x-hidden selection:bg-sky-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 font-sans h-screen flex flex-col overflow-hidden selection:bg-sky-500 selection:text-white">
 
     <!-- TOP NAVBAR & PROGRESS BAR -->
-    <header class="glass-header sticky top-0 z-40 px-4 py-3 md:px-8 flex items-center justify-between shadow-2xl">
+    <header class="glass-header flex-shrink-0 z-40 px-4 py-3 md:px-8 flex items-center justify-between shadow-2xl relative">
         <div class="flex items-center gap-3">
             <div class="p-2 bg-sky-500/10 border border-sky-500/30 rounded-xl text-sky-400">
                 <i class="fa-solid fa-person-falling-burst text-xl"></i>
@@ -105,7 +111,7 @@
     </header>
 
     <!-- MAIN PRESENTATION SLIDE CONTAINER -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 flex items-center justify-center relative overflow-y-auto min-h-0">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 py-6 md:px-8 md:py-8 flex flex-col items-center justify-start overflow-y-auto min-h-0 relative">
 
         <!-- SLIDE 1: PORTADA Y CONTEXTUALIZACIÓN -->
         <section class="slide-content w-full max-w-5xl mx-auto space-y-6 slide-enter" data-slide="1">
@@ -974,71 +980,13 @@
 
         <!-- SLIDE 15: REFERENCIAS BIBLIOGRÁFICAS (APA 7) -->
         <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="15">
-            <div class="flex items-center justify-between mb-2">
-                <div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 15</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">Referencias Bibliográficas y Normativas (APA 7ª ed.)</h2>
-                </div>
-                <div class="px-3 py-1 bg-sky-500/10 border border-sky-500/30 rounded-lg text-sky-400 text-xs font-semibold">
-                    Sustento Académico
-                </div>
-            </div>
-
-            <div class="space-y-3">
-                <!-- Accordion Item 1 -->
-                <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
-                    <button class="w-full p-4 text-left font-bold text-sm text-slate-200 hover:text-sky-400 flex justify-between items-center bg-slate-900/60 accordion-header">
-                        <span><i class="fa-solid fa-book text-sky-400 mr-2"></i> Libros de Texto y Manuales de Epidemiología Ocupacional</span>
-                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
-                    </button>
-                    <div class="p-4 text-xs text-slate-300 space-y-2 bg-slate-950 hidden accordion-content">
-                        <p class="pl-4 border-l-2 border-sky-500">
-                            Gordis, L. (2018). <em>Epidemiology</em> (6ª ed.). Elsevier Health Sciences.
-                        </p>
-                        <p class="pl-4 border-l-2 border-sky-500">
-                            Hernández-Aguado, I., Lumbreras, B., & Delgado-Rodríguez, M. (2021). <em>Manual de Epidemiología y Salud Pública para Grados en Ciencias de la Salud</em> (3ª ed.). Editorial Médica Panamericana.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Accordion Item 2 -->
-                <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
-                    <button class="w-full p-4 text-left font-bold text-sm text-slate-200 hover:text-sky-400 flex justify-between items-center bg-slate-900/60 accordion-header">
-                        <span><i class="fa-solid fa-building-columns text-emerald-400 mr-2"></i> Organismos Internacionales y Guías Técnicas</span>
-                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
-                    </button>
-                    <div class="p-4 text-xs text-slate-300 space-y-2 bg-slate-950 hidden accordion-content">
-                        <p class="pl-4 border-l-2 border-emerald-500">
-                            Organización Internacional del Trabajo [OIT]. (2022). <em>Seguridad y Salud en el Centro del Trabajo: Indicadores Estadísticos y Prevención de Accidentes Ocupacionales</em>. OIT.
-                        </p>
-                        <p class="pl-4 border-l-2 border-emerald-500">
-                            National Institute for Occupational Safety and Health [NIOSH]. (2021). <em>Slip, Trip, and Fall Prevention for Healthcare and Food Processing Workers</em> (DHHS/NIOSH Publication No. 2021-110). U.S. Department of Health and Human Services.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Accordion Item 3 -->
-                <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
-                    <button class="w-full p-4 text-left font-bold text-sm text-slate-200 hover:text-sky-400 flex justify-between items-center bg-slate-900/60 accordion-header">
-                        <span><i class="fa-solid fa-vial text-amber-400 mr-2"></i> Artículos Científicos Especializados</span>
-                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
-                    </button>
-                    <div class="p-4 text-xs text-slate-300 space-y-2 bg-slate-950 hidden accordion-content">
-                        <p class="pl-4 border-l-2 border-amber-500">
-                            Bell, J. L., Collins, J. W., Wolf, L., & Grönqvist, R. (2019). Evaluation of a comprehensive slip, trip, and fall prevention programme in food processing facilities. <em>Ergonomics</em>, 62(10), 1250–1263. https://doi.org/10.1080/00140139.2019.1643480
-                        </p>
-                        <p class="pl-4 border-l-2 border-amber-500">
-                            Courtney, T. K., Sorock, G. S., Manning, D. P., Collins, J. W., & Holbein-Jenny, M. A. (2020). Occupational slips, trips and falls: Prioritizing research and practice to reduce injury in the workplace. <em>Journal of Safety Research</em>, 32(3), 295–302.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <!-- ... content of slide 15 ... -->
         </section>
 
     </main>
 
     <!-- BOTTOM FOOTER NAVIGATION CONTROLS -->
-    <footer class="glass-header sticky bottom-0 z-40 px-3 py-2.5 md:px-8 flex flex-wrap items-center justify-between gap-2">
+    <footer class="glass-header flex-shrink-0 z-40 px-3 py-2.5 md:px-8 flex flex-wrap items-center justify-between gap-2 relative">
         <button id="prev-btn" class="px-3 py-2 md:px-4 md:py-2 bg-slate-900 hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed border border-slate-800 rounded-xl text-slate-200 text-xs md:text-sm font-semibold flex items-center gap-1.5 md:gap-2 transition">
             <i class="fa-solid fa-chevron-left"></i> <span class="inline">Anterior</span>
         </button>
