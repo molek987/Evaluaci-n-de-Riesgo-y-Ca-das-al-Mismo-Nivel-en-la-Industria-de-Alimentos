@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="es" class="dark h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Seguridad y Salud en el Trabajo - Grupo #3</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Configuration & CSS -->
+    <script>
+        window.tailwind = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Custom scrollbars & glassmorphism styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-header {
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .slide-enter {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans h-full flex flex-col justify-between overflow-x-hidden selection:bg-sky-500 selection:text-white">
+
+    <!-- TOP NAVBAR & PROGRESS BAR -->
+    <header class="glass-header sticky top-0 z-40 px-4 py-3 md:px-8 flex items-center justify-between shadow-2xl">
+        <div class="flex items-center gap-3">
+            <div class="p-2 bg-sky-500/10 border border-sky-500/30 rounded-xl text-sky-400">
+                <i class="fa-solid fa-person-falling-burst text-xl"></i>
+            </div>
+            <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <h1 class="text-xs md:text-sm font-bold uppercase tracking-wider text-sky-400">CURSO SEGURIDAD Y SALUD EN EL TRABAJO</h1>
+                    <span class="text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md bg-sky-500/20 text-sky-300 border border-sky-500/40">Grupo#3</span>
+                </div>
+                <p class="text-xs text-slate-400 hidden sm:block">Estudio de Caso: Alimentos del Valle S.A.</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <!-- Slide Counter -->
+            <div class="text-xs font-mono bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-lg text-slate-300">
+                <span id="current-slide-num" class="text-sky-400 font-bold text-sm">1</span> / <span id="total-slides-num">15</span>
+            </div>
+
+            <!-- Jump Menu Modal Button -->
+            <button id="open-grid-btn" class="p-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-slate-300 hover:text-white transition" title="Ver índice de diapositivas">
+                <i class="fa-solid fa-th-large"></i>
+            </button>
+        </div>
+
+        <!-- Progress Bar at the bottom of header -->
+        <div class="absolute bottom-0 left-0 h-[3px] bg-sky-500 transition-all duration-300 ease-out" id="progress-bar" style="width: 6.66%;"></div>
+    </header>
+
+    <!-- MAIN PRESENTATION SLIDE CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 flex items-center justify-center relative overflow-y-auto min-h-0">
+
+        <!-- SLIDE 1: PORTADA Y CONTEXTUALIZACIÓN -->
+        <section class="slide-content w-full max-w-5xl mx-auto space-y-6 slide-enter" data-slide="1">
+            <div class="text-center space-y-4">
+                <span class="px-3 py-1 bg-sky-500/10 border border-sky-500/30 text-sky-400 rounded-full text-xs font-semibold uppercase tracking-widest inline-block">
+                    Análisis Epidemiológico de Posgrado
+                </span>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                    Evaluación de Riesgo y Caídas al Mismo Nivel en la Industria de Alimentos
+                </h1>
+                <p class="text-base md:text-lg text-slate-400 max-w-3xl mx-auto">
+                    Análisis cuantitativo de indicadores de morbilidad, incidencia y prevalencia, tríada epidemiológica y diseño de intervenciones sistemáticas de ingeniería en <strong class="text-slate-200">Alimentos del Valle S.A.</strong>
+                </p>
+            </div>
+
+            <!-- Key Metrics Summary Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+                <div class="glass-card p-4 rounded-xl border-l-4 border-l-sky-500">
+                    <div class="text-xs text-slate-400 font-medium">Población Total (N)</div>
+                    <div class="text-2xl font-bold text-white mt-1">150 <span class="text-xs font-normal text-slate-400">empleados</span></div>
+                    <div class="text-[11px] text-sky-400 mt-1">Planta de procesamiento</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl border-l-4 border-l-amber-500">
+                    <div class="text-xs text-slate-400 font-medium">Casos Preexistentes</div>
+                    <div class="text-2xl font-bold text-white mt-1">3 <span class="text-xs font-normal text-slate-400">trabajadores</span></div>
+                    <div class="text-[11px] text-amber-400 mt-1">Inicio de período</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl border-l-4 border-l-emerald-500">
+                    <div class="text-xs text-slate-400 font-medium">Casos Nuevos (Año)</div>
+                    <div class="text-2xl font-bold text-white mt-1">12 <span class="text-xs font-normal text-slate-400">accidentes</span></div>
+                    <div class="text-[11px] text-emerald-400 mt-1">Nuevos eventos</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl border-l-4 border-l-rose-500">
+                    <div class="text-xs text-slate-400 font-medium">Casos Activos 31/12</div>
+                    <div class="text-2xl font-bold text-white mt-1">5 <span class="text-xs font-normal text-slate-400">con secuelas</span></div>
+                    <div class="text-[11px] text-rose-400 mt-1">Cierre de año</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: CARACTERIZACIÓN DEL RIESGO LOCATIVO -->
+        <section class="slide-content w-full max-w-5xl mx-auto space-y-6 hidden" data-slide="2">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 02</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Caracterización del Contexto Ocupacional</h2>
+                </div>
+                <div class="px-3 py-1 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-400 text-xs font-semibold">
+                    Diagnóstico Locativo
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-xl p-5 space-y-3">
+                    <div class="w-10 h-10 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center text-lg font-bold">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white">1. Derrames de Aceites y Agua</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        En las líneas de fritado y lavado industrial de vegetales se generan condensaciones y fugas continuas de líquidos grasos que reducen el coeficiente de fricción (µ &lt; 0.20).
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-xl p-5 space-y-3">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg font-bold">
+                        <i class="fa-solid fa-boxes-packing"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white">2. Obstáculos y Pasillos</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Acumulación imprevista de parihuelas, cajas de empaque y mangueras fuera de las zonas delimitadas en horas pico de almacenamiento y distribución.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-xl p-5 space-y-3">
+                    <div class="w-10 h-10 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg font-bold">
+                        <i class="fa-solid fa-shoe-prints"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white">3. Calzado e Iluminación</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Uso generalizado de calzado con suelas desgastadas o inadecuadas para grasas, sumado a niveles de iluminancia deficientes (&lt; 150 lux) en pasillos secundarios.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-300 flex items-center gap-3">
+                <i class="fa-solid fa-circle-info text-sky-400 text-lg flex-shrink-0"></i>
+                <div>
+                    <strong class="text-white block mb-0.5">Mecanismo Fisicoquímico del Evento:</strong>
+                    La mezcla de agua y aceites forma una película lipídica resbaladiza. Al caminar a ritmo acelerado, el talón pierde tracción repentinamente, provocando una pérdida del centro de gravedad y un impacto directo con la superficie.
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: CÁLCULO E INTERPRETACIÓN DE LA MORBILIDAD -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="3">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 03</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Indicadores Epidemiológicos I: Morbilidad Ocupacional</h2>
+                </div>
+                <div class="px-3 py-1 bg-sky-500/10 border border-sky-500/30 rounded-lg text-sky-400 text-xs font-semibold">
+                    Análisis Cuantitativo
+                </div>
+            </div>
+
+            <!-- Mathematical definition & Calculation Card -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card rounded-xl p-6 space-y-4">
+                    <div class="flex items-center gap-2 text-sky-400 font-bold text-sm uppercase tracking-wider">
+                        <i class="fa-solid fa-calculator"></i> Definición y Fórmula Matemática
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        La <strong>Morbilidad Ocupacional</strong> mide la proporción de trabajadores que enferman o sufren lesiones derivadas del trabajo en una población definida y durante un intervalo específico.
+                    </p>
+                    
+                    <!-- Human-readable visual formula box -->
+                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-center space-y-4">
+                        <div class="text-xs text-sky-400 font-semibold uppercase tracking-wider">Fórmula General de Morbilidad</div>
+                        
+                        <!-- Visual Fraction Box -->
+                        <div class="flex items-center justify-center gap-2 md:gap-3 text-xs md:text-sm font-semibold text-slate-200">
+                            <span class="text-sky-300 font-bold hidden sm:inline">Tasa Morbilidad</span>
+                            <span>=</span>
+                            <div class="inline-flex flex-col items-center px-2">
+                                <span class="pb-1 border-b-2 border-sky-500 text-slate-100 font-medium">Total de Trabajadores Lesionados</span>
+                                <span class="pt-1 text-slate-400">Población Total Expuesta</span>
+                            </div>
+                            <span class="text-slate-300">&times; 100</span>
+                        </div>
+
+                        <div class="border-t border-slate-800/80 pt-4">
+                            <div class="text-xs text-slate-400 mb-3">Sustitución con datos del caso (Alimentos del Valle S.A.):</div>
+                            
+                            <div class="flex items-center justify-center gap-3 font-mono text-base">
+                                <div class="inline-flex flex-col items-center px-3">
+                                    <span class="pb-1 border-b-2 border-emerald-500 text-amber-400 font-bold text-lg">15</span>
+                                    <span class="pt-1 text-slate-300 font-bold">150</span>
+                                </div>
+                                <span class="text-slate-400 font-bold">&times; 100</span>
+                                <span class="text-slate-400 font-bold">=</span>
+                                <span class="text-2xl text-emerald-400 font-extrabold bg-emerald-500/10 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl shadow-lg">10.0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-slate-900/60 border border-slate-800 rounded-lg text-xs text-slate-300">
+                        <strong>Expresión Estándar:</strong> 10% global, o bien <strong>100 trabajadores lesionados por cada 1,000 empleados</strong> al año.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 space-y-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-amber-400 font-bold text-sm uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-microscope"></i> Interpretación Epidemiológica e Industrial
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                                <span><strong>Magnitud de Carga Ocupacional:</strong> Exactamente 1 de cada 10 trabajadores en la planta experimentó un evento traumático por caídas al mismo nivel durante el año.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                                <span><strong>Severidad Operativa:</strong> Indica una falla sistémica en la gestión de riesgos locativos. Un 10% de morbilidad por una sola causa (caídas) sobrepasa los márgenes aceptables industriales (&lt; 2%).</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                                <span><strong>Impacto Económico-Productivo:</strong> Genera ausentismo laboral, recargo de turnos, costos de incapacidad temporal y riesgo de indemnizaciones.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-300">
+                        <i class="fa-solid fa-lightbulb mr-1"></i> <strong>Perspectiva de Ingeniería:</strong> El 10% representa una métrica clave de desempeño (KPI de Seguridad) que exige la suspensión del peligro en origen.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: CÁLCULO E INTERPRETACIÓN DE LA INCIDENCIA -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="4">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 04</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Indicadores Epidemiológicos II: Incidencia Acumulada</h2>
+                </div>
+                <div class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 text-xs font-semibold">
+                    Dinámica de Casos Nuevos
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Left Formulas and nuances -->
+                <div class="md:col-span-6 glass-card rounded-xl p-6 space-y-4">
+                    <h3 class="text-base font-bold text-sky-300 uppercase tracking-wider">Cálculo de Incidencia Acumulada (IA)</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        La <strong>Incidencia</strong> cuantifica el riesgo individual de desarrollar una nueva lesión durante el período de observación. Solo considera <strong>casos nuevos (12)</strong>.
+                    </p>
+
+                    <!-- Formula Box 1: Global baseline -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                        <div class="text-xs font-semibold text-sky-400 uppercase tracking-wider">A) Cálculo Basado en Población Inicial Total (N = 150)</div>
+                        
+                        <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-semibold">
+                            <span class="text-sky-300 font-bold">IA</span>
+                            <span>=</span>
+                            <div class="inline-flex flex-col items-center px-2">
+                                <span class="pb-1 border-b border-sky-500 text-slate-200">Casos Nuevos (<strong class="text-emerald-400">12</strong>)</span>
+                                <span class="pt-1 text-slate-400">Población Total (<strong class="text-slate-200">150</strong>)</span>
+                            </div>
+                            <span>&times; 100</span>
+                            <span>=</span>
+                            <span class="text-xl text-emerald-400 font-extrabold font-mono bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-lg">8.0%</span>
+                        </div>
+                    </div>
+
+                    <!-- Formula Box 2: Rigorous Epidemiological Risk Population -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                        <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider">B) Ajuste Fino Epidemiológico (Población Susceptible Real)</div>
+                        <p class="text-[11px] text-slate-400 leading-normal">Excluyendo 3 casos preexistentes al inicio &rarr; Trabajadores en riesgo real = 150 - 3 = <strong class="text-amber-300">147</strong>.</p>
+                        
+                        <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-semibold">
+                            <span class="text-amber-300 font-bold">IA<sub class="text-[10px]">ajustada</sub></span>
+                            <span>=</span>
+                            <div class="inline-flex flex-col items-center px-2">
+                                <span class="pb-1 border-b border-amber-500 text-emerald-400 font-bold">12</span>
+                                <span class="pt-1 text-slate-300">147</span>
+                            </div>
+                            <span>&times; 100</span>
+                            <span>=</span>
+                            <span class="text-xl text-amber-400 font-extrabold font-mono bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-lg">8.16%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Interpretation -->
+                <div class="md:col-span-6 glass-card rounded-xl p-6 space-y-4">
+                    <h3 class="text-base font-bold text-emerald-400 uppercase tracking-wider"><i class="fa-solid fa-chart-line mr-1"></i> Interpretación del Riesgo Incidente</h3>
+                    <div class="space-y-3 text-sm text-slate-300">
+                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800">
+                            <span class="text-emerald-400 font-bold block mb-1">Riesgo de Acaecimiento (Velocidad de Brote)</span>
+                            Durante el año de estudio, un <strong>8.0% (o 80 por cada 1,000 trabajadores)</strong> sufrió un nuevo accidente de caída. Refleja la velocidad con la que las condiciones peligrosas del ambiente laboral producen daño.
+                        </div>
+
+                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800">
+                            <span class="text-sky-400 font-bold block mb-1">Efectividad de Medidas Existentes</span>
+                            Demuestra que la probabilidad de que un trabajador sufra un accidente totalmente nuevo dentro del año es elevada. Las políticas de prevención vigentes son ineficaces o inexistentes.
+                        </div>
+
+                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800">
+                            <span class="text-violet-400 font-bold block mb-1">Tasa de Ataque Ocupacional</span>
+                            Permite inferir que 12 eventos surgieron como consecuencia directa de la persistencia de derrames y pasillos desordenados a lo largo del flujo productivo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: PREVALENCIA DE PERÍODO VS PREVALENCIA PUNTUAL -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="5">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 05</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Indicadores Epidemiológicos III: Prevalencia de Período vs. Puntual</h2>
+                </div>
+                <div class="px-3 py-1 bg-violet-500/10 border border-violet-500/30 rounded-lg text-violet-400 text-xs font-semibold">
+                    Carga Espacio-Temporal
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Período -->
+                <div class="glass-card rounded-xl p-6 space-y-4 border-t-4 border-t-sky-500">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-base font-bold text-sky-300 uppercase">1. Prevalencia de Período (1 Año)</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800 font-medium">Acumulada</span>
+                    </div>
+                    <p class="text-xs text-slate-300">Mide la totalidad de trabajadores que estuvieron lesionados o limitados en algún momento durante todo el año (casos preexistentes + casos nuevos).</p>
+                    
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                        <div class="text-[11px] text-slate-400 text-center font-semibold uppercase tracking-wider">Casos Totales en el Año / Población Expuesta</div>
+                        
+                        <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-semibold">
+                            <div class="inline-flex flex-col items-center px-2">
+                                <span class="pb-1 border-b-2 border-sky-500 text-sky-300 font-bold">15 casos totales</span>
+                                <span class="pt-1 text-slate-400">150 trabajadores</span>
+                            </div>
+                            <span class="text-slate-400 font-bold">&times; 100</span>
+                            <span class="text-slate-400 font-bold">=</span>
+                            <span class="text-2xl text-sky-400 font-extrabold font-mono bg-sky-500/10 border border-sky-500/30 px-3 py-1 rounded-xl">10.0%</span>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-300 space-y-1">
+                        <p><strong>Interpretación:</strong> El 10% de la fuerza laboral necesitó atención o sufrió incapacidad laboral por caídas en algún momento del período anual.</p>
+                    </div>
+                </div>
+
+                <!-- Puntual -->
+                <div class="glass-card rounded-xl p-6 space-y-4 border-t-4 border-t-rose-500">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-base font-bold text-rose-300 uppercase">2. Prevalencia Puntual (31 de Diciembre)</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800 font-medium">Corte Transversal</span>
+                    </div>
+                    <p class="text-xs text-slate-300">Mide los trabajadores activos que permanecen con lesión o limitación física funcional en un día específico de corte (31/12).</p>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                        <div class="text-[11px] text-slate-400 text-center font-semibold uppercase tracking-wider">Lesionados Activos al 31/12 / Población Expuesta</div>
+
+                        <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-semibold">
+                            <div class="inline-flex flex-col items-center px-2">
+                                <span class="pb-1 border-b-2 border-rose-500 text-rose-400 font-bold">5 lesionados activos</span>
+                                <span class="pt-1 text-slate-400">150 trabajadores</span>
+                            </div>
+                            <span class="text-slate-400 font-bold">&times; 100</span>
+                            <span class="text-slate-400 font-bold">=</span>
+                            <span class="text-2xl text-rose-400 font-extrabold font-mono bg-rose-500/10 border border-rose-500/30 px-3 py-1 rounded-xl">3.33%</span>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-300 space-y-1">
+                        <p><strong>Interpretación:</strong> Al cierre del año, <strong>33.3 trabajadores por cada 1,000</strong> continúan incapacitados o con restricciones físicas permanentes/prolongadas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resolution & Recovery Insight -->
+            <div class="glass-card rounded-xl p-4 bg-slate-900/90 border border-slate-800 flex items-center gap-4">
+                <div class="p-3 bg-violet-500/20 text-violet-400 rounded-xl text-2xl">
+                    <i class="fa-solid fa-code-compare"></i>
+                </div>
+                <div class="text-xs text-slate-300">
+                    <strong class="text-white text-sm block">Análisis de la Dinámica Incidencia vs. Prevalencia:</strong>
+                    De los 15 trabajadores lesionados en el año, 10 lograron la restitución biológica completa (recuperación total), mientras que 5 (33.3% de los afectados) evolucionaron a limitaciones subagudas o crónicas al 31 de diciembre. La cronicidad y lenta rehabilitación representan pérdidas directas en capacidad instalada.
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: TABLA COMPARATIVA DE INDICADORES -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="6">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 06</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Análisis Comparativo e Interrelación de Indicadores</h2>
+                </div>
+                <div class="px-3 py-1 bg-sky-500/10 border border-sky-500/30 rounded-lg text-sky-400 text-xs font-semibold">
+                    Síntesis Epidemiológica
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs md:text-sm">
+                        <thead class="bg-slate-950 text-slate-300 uppercase tracking-wider text-[11px] border-b border-slate-800">
+                            <tr>
+                                <th class="p-4">Indicador</th>
+                                <th class="p-4">Numerador / Denominador</th>
+                                <th class="p-4 text-center">Valor Calculado</th>
+                                <th class="p-4">Utilidad en Salud Ocupacional</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                            <tr class="hover:bg-slate-900/50 transition">
+                                <td class="p-4 font-bold text-sky-400">Morbilidad Ocupacional Global</td>
+                                <td class="p-4 font-mono text-xs">15 / 150</td>
+                                <td class="p-4 text-center font-bold text-sky-300 text-base">10.0%</td>
+                                <td class="p-4 text-xs">Mide la carga global del evento traumático durante el año en la planta.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/50 transition">
+                                <td class="p-4 font-bold text-emerald-400">Incidencia Acumulada (Población Total)</td>
+                                <td class="p-4 font-mono text-xs">12 / 150</td>
+                                <td class="p-4 text-center font-bold text-emerald-300 text-base">8.0%</td>
+                                <td class="p-4 text-xs">Cuantifica el riesgo individual de sufrir un accidente nuevo en el período.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/50 transition">
+                                <td class="p-4 font-bold text-amber-400">Incidencia Acumulada (Ajustada)</td>
+                                <td class="p-4 font-mono text-xs">12 / 147</td>
+                                <td class="p-4 text-center font-bold text-amber-300 text-base">8.16%</td>
+                                <td class="p-4 text-xs">Estima el riesgo puro excluyendo trabajadores no susceptibles al inicio.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/50 transition">
+                                <td class="p-4 font-bold text-indigo-400">Prevalencia de Período</td>
+                                <td class="p-4 font-mono text-xs">15 / 150</td>
+                                <td class="p-4 text-center font-bold text-indigo-300 text-base">10.0%</td>
+                                <td class="p-4 text-xs">Proporción acumulada de trabajadores con incapacidad temporal en el año.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/50 transition">
+                                <td class="p-4 font-bold text-rose-400">Prevalencia Puntual (31/12)</td>
+                                <td class="p-4 font-mono text-xs">5 / 150</td>
+                                <td class="p-4 text-center font-bold text-rose-300 text-base">3.33%</td>
+                                <td class="p-4 text-xs">Evalúa la carga activa de secuelas o limitaciones persistentes al cierre.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 md:p-6 space-y-4 border-l-4 border-l-sky-500">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div class="text-xs font-bold text-sky-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-scale-balanced text-sm"></i> Ecuación Fundamental de Equilibrio Epidemiológico
+                    </div>
+                    <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-semibold">
+                        Relación P &approx; I &times; D̄
+                    </span>
+                </div>
+
+                <!-- Visual Formula Display Box -->
+                <div class="bg-slate-950/90 p-4 md:p-6 rounded-xl border border-slate-800 text-center shadow-inner">
+                    <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4 font-sans">
+                        <!-- Prevalencia -->
+                        <div class="flex flex-col items-center bg-slate-900 border border-indigo-500/30 px-4 py-3 rounded-xl min-w-[140px]">
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Prevalencia (P)</span>
+                            <span class="text-xl md:text-2xl font-extrabold text-white mt-0.5">P</span>
+                            <span class="text-[11px] text-slate-400 mt-1">Carga total de casos</span>
+                        </div>
+
+                        <!-- Symbol ≈ -->
+                        <div class="text-2xl md:text-3xl font-extrabold text-sky-400 px-1">&approx;</div>
+
+                        <!-- Incidencia -->
+                        <div class="flex flex-col items-center bg-slate-900 border border-emerald-500/30 px-4 py-3 rounded-xl min-w-[140px]">
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Incidencia (I)</span>
+                            <span class="text-xl md:text-2xl font-extrabold text-white mt-0.5">I</span>
+                            <span class="text-[11px] text-slate-400 mt-1">Nuevos casos / tiempo</span>
+                        </div>
+
+                        <!-- Symbol × -->
+                        <div class="text-xl md:text-2xl font-bold text-amber-400 px-1">&times;</div>
+
+                        <!-- Duración -->
+                        <div class="flex flex-col items-center bg-slate-900 border border-amber-500/30 px-4 py-3 rounded-xl min-w-[140px]">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Duración Media (D̄)</span>
+                            <span class="text-xl md:text-2xl font-extrabold text-white mt-0.5"><span class="border-t-2 border-amber-400 pt-0.5">D</span></span>
+                            <span class="text-[11px] text-slate-400 mt-1">Tiempo de incapacidad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interpretative Strategy Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
+                    <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg flex items-start gap-2.5">
+                        <i class="fa-solid fa-arrow-down-long text-emerald-400 text-base mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <strong class="text-white block mb-0.5">Estrategia 1: Reducir la Incidencia (I)</strong>
+                            A través de prevención primaria e ingeniería (eliminar derrames de aceite y pisos antideslizantes) para evitar la aparición de accidentes nuevos.
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg flex items-start gap-2.5">
+                        <i class="fa-solid fa-clock-rotate-left text-amber-400 text-base mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <strong class="text-white block mb-0.5">Estrategia 2: Reducir la Duración (D̄)</strong>
+                            Mediante atención médica precoz, fisioterapia y rehabilitación integral para acortar el tiempo promedio de recuperación e incapacidad.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: TRÍADA EPIDEMIOLÓGICA -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="7">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 07</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Tríada Epidemiológica Ocupacional</h2>
+                </div>
+                <div class="px-3 py-1 bg-violet-500/10 border border-violet-500/30 rounded-lg text-violet-400 text-xs font-semibold">
+                    Modelo de Interacción
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Agente -->
+                <div class="glass-card rounded-xl p-6 space-y-4 border-t-4 border-t-sky-500">
+                    <div class="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">1. Agente (Energía Mecánica)</h3>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li><strong>Naturaleza:</strong> Energía cinética derivada de la masa corporal y aceleración de la gravedad.</li>
+                        <li><strong>Factor Peligroso:</strong> Pérdida intempestiva de fricción entre la suela del calzado y la superficie del suelo (µ &lt; 0.20).</li>
+                        <li><strong>Mecanismo de Lesión:</strong> Impacto directo contra superficie dura produciendo contusiones, esguinces o fracturas.</li>
+                    </ul>
+                </div>
+
+                <!-- Huésped -->
+                <div class="glass-card rounded-xl p-6 space-y-4 border-t-4 border-t-amber-500">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">2. Huésped (Trabajador)</h3>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li><strong>Factores Fisiológicos:</strong> Fatiga acumulada por turnos extensos, agudeza visual reducida y reflejos neuromusculares.</li>
+                        <li><strong>Conducta y Percepción:</strong> Aclimatación al riesgo, prisa operativa por metas de producción.</li>
+                        <li><strong>Elementos de Protección:</strong> Uso de calzado con suela desgastada o sin certificación antideslizante para grasas.</li>
+                    </ul>
+                </div>
+
+                <!-- Ambiente -->
+                <div class="glass-card rounded-xl p-6 space-y-4 border-t-4 border-t-emerald-500">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-industry"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">3. Ambiente (Planta)</h3>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li><strong>Entorno Físico:</strong> Presencia permanente de agua y aceite vegetal sobre azulejos lisos o sin textura aditiva.</li>
+                        <li><strong>Entorno Organizacional:</strong> Deficiente programa de orden y limpieza (5S), señalización insuficiente de pisos húmedos.</li>
+                        <li><strong>Iluminación:</strong> Iluminancia por debajo de la norma (&lt; 150 lux) en pasillos de circulación.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: HISTORIA NATURAL DEL ACCIDENTE -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="8">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 08</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Historia Natural del Evento Ocupacional</h2>
+                </div>
+                <div class="px-3 py-1 bg-rose-500/10 border border-rose-500/30 rounded-lg text-rose-400 text-xs font-semibold">
+                    Modelo Leavell y Clark
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Período Prepatogénico -->
+                <div class="glass-card rounded-xl p-6 space-y-4 border-l-4 border-l-sky-500">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base font-bold text-sky-300 uppercase">1. Período Prepatogénico (Antes de la Caída)</h3>
+                        <span class="text-xs px-2.5 py-1 rounded bg-sky-950 text-sky-400 border border-sky-800 font-semibold">Estado de Vulnerabilidad</span>
+                    </div>
+                    <p class="text-xs text-slate-300">Existencia simultánea de factores de riesgo no controlados antes de la ocurrencia del impacto.</p>
+                    <div class="bg-slate-950 p-4 rounded-lg space-y-2 text-xs text-slate-300 border border-slate-800">
+                        <div><strong class="text-sky-400">&bull; Falla Locativa:</strong> Fuga de aceite vegetal no contenida en la freidora #2.</div>
+                        <div><strong class="text-sky-400">&bull; Falla Operativa:</strong> Pasillos bloqueados con tarimas de madera.</div>
+                        <div><strong class="text-sky-400">&bull; Condición del Operario:</strong> Fatiga en el tramo final del turno matutino.</div>
+                    </div>
+                </div>
+
+                <!-- Período Patogénico -->
+                <div class="glass-card rounded-xl p-6 space-y-4 border-l-4 border-l-rose-500">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base font-bold text-rose-300 uppercase">2. Período Patogénico (Ocurrencia y Evolución)</h3>
+                        <span class="text-xs px-2.5 py-1 rounded bg-rose-950 text-rose-400 border border-rose-800 font-semibold">Fase Biológica y Clínica</span>
+                    </div>
+                    <p class="text-xs text-slate-300">Secuencia fisiopatológica tras la pérdida súbita de equilibrio.</p>
+                    <div class="bg-slate-950 p-4 rounded-lg space-y-2 text-xs text-slate-300 border border-slate-800">
+                        <div><strong class="text-rose-400">&bull; Estímulo Traumático:</strong> Caída sobre articulación de rodilla/muñeca.</div>
+                        <div><strong class="text-rose-400">&bull; Daño Tisular Inmediato:</strong> Hematoma, esguince de ligamento, fractura ósea.</div>
+                        <div><strong class="text-rose-400">&bull; Horizonte Clínico:</strong> Dolor agudo, inflamación, incapacidad física de marcha.</div>
+                        <div><strong class="text-rose-400">&bull; Secuelas (3.33%):</strong> Dolor crónico articular y limitaciones funcionales al 31/12.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: MODELO DE CAUSALIDAD (QUESO SUIZO) -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="9">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 09</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Cadena Epidemiológica y Modelo de Causalidad</h2>
+                </div>
+                <div class="px-3 py-1 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-400 text-xs font-semibold">
+                    Modelo de Reason (Queso Suizo)
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="glass-card p-4 rounded-xl border-t-4 border-t-indigo-500 space-y-2">
+                    <span class="text-xs text-indigo-400 font-bold uppercase">Barrera 1</span>
+                    <h3 class="text-sm font-bold text-white">Fallas Organizacionales</h3>
+                    <p class="text-xs text-slate-300">Ausencia de presupuestos asignados para revestimientos antideslizantes de alto desempeño.</p>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl border-t-4 border-t-sky-500 space-y-2">
+                    <span class="text-xs text-sky-400 font-bold uppercase">Barrera 2</span>
+                    <h3 class="text-sm font-bold text-white">Supervisión Inoperante</h3>
+                    <p class="text-xs text-slate-300">Tolerancia sistemática de derrames en piso durante la jornada productiva continua.</p>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl border-t-4 border-t-amber-500 space-y-2">
+                    <span class="text-xs text-amber-400 font-bold uppercase">Barrera 3</span>
+                    <h3 class="text-sm font-bold text-white">Condiciones Inseguras</h3>
+                    <p class="text-xs text-slate-300">Superficies impregnadas con aceite vegetal sin señalización provisional de peligro.</p>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl border-t-4 border-t-rose-500 space-y-2">
+                    <span class="text-xs text-rose-400 font-bold uppercase">Barrera 4</span>
+                    <h3 class="text-sm font-bold text-white">Acto Inseguro / Evento</h3>
+                    <p class="text-xs text-slate-300">Desplazamiento a velocidad acelerada sobre zona resbaladiza con calzado desgastado.</p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-300">
+                <strong class="text-white text-sm block mb-1"><i class="fa-solid fa-shield-halved text-amber-400 mr-1"></i> Principio de Prevención Colectiva:</strong>
+                El accidente por caída al mismo nivel no es un "evento fortuito o culpa exclusiva del trabajador", sino el resultado de la alineación de múltiples orificios o fallas en las barreras de defensa de la empresa.
+            </div>
+        </section>
+
+        <!-- SLIDE 10: NIVELES DE PREVENCIÓN -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="10">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 10</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Niveles de Prevención en Salud Ocupacional</h2>
+                </div>
+                <div class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 text-xs font-semibold">
+                    Estrategia Multinivel
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Primaria -->
+                <div class="glass-card rounded-xl p-5 space-y-3 border-t-4 border-t-emerald-500">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base font-bold text-emerald-400">Prevención Primaria</h3>
+                        <i class="fa-solid fa-shield-heart text-emerald-400 text-lg"></i>
+                    </div>
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Período Prepatogénico</div>
+                    <ul class="text-xs text-slate-300 space-y-2 pt-2">
+                        <li>&bull; Implementación de pisos epóxicos antiderrapantes (µ &ge; 0.50).</li>
+                        <li>&bull; Sistema de canaletas para contención automática de derrames de aceite.</li>
+                        <li>&bull; Capacitación continua en protocolo de casas limpias (5S).</li>
+                    </ul>
+                </div>
+
+                <!-- Secundaria -->
+                <div class="glass-card rounded-xl p-5 space-y-3 border-t-4 border-t-amber-500">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base font-bold text-amber-400">Prevención Secundaria</h3>
+                        <i class="fa-solid fa-user-doctor text-amber-400 text-lg"></i>
+                    </div>
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Diagnóstico y Atención Precoz</div>
+                    <ul class="text-xs text-slate-300 space-y-2 pt-2">
+                        <li>&bull; Atención médica inmediata en planta ante caídas.</li>
+                        <li>&bull; Protocolo de reporte e investigación del 100% de los incidentes.</li>
+                        <li>&bull; Inspección semanal de desgaste en la suela del calzado de seguridad.</li>
+                    </ul>
+                </div>
+
+                <!-- Terciaria -->
+                <div class="glass-card rounded-xl p-5 space-y-3 border-t-4 border-t-rose-500">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base font-bold text-rose-400">Prevención Terciaria</h3>
+                        <i class="fa-solid fa-wheelchair text-rose-400 text-lg"></i>
+                    </div>
+                    <div class="text-xs font-semibold text-slate-400 uppercase">Rehabilitación y Readaptación</div>
+                    <ul class="text-xs text-slate-300 space-y-2 pt-2">
+                        <li>&bull; Fisioterapia y terapia física integral para los 5 casos con secuelas.</li>
+                        <li>&bull; Programa de reubicación laboral temporal o permanente adaptada.</li>
+                        <li>&bull; Evaluación ergonómica del puesto readaptado.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: JERARQUÍA DE CONTROLES DE INGENIERÍA -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="11">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 11</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Jerarquía de Controles de Seguridad Ocupacional</h2>
+                </div>
+                <div class="px-3 py-1 bg-sky-500/10 border border-sky-500/30 rounded-lg text-sky-400 text-xs font-semibold">
+                    ISO 45001 / NIOSH
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="glass-card p-4 rounded-xl border-l-4 border-l-emerald-500 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-emerald-400 uppercase">1. Eliminación (Más Efectivo)</span>
+                        <h3 class="text-sm font-bold text-white">Modificación del Proceso Térmico / Grasas</h3>
+                        <p class="text-xs text-slate-300">Eliminar fugas mediante circuito cerrado de tuberías herméticas para el aceite vegetal.</p>
+                    </div>
+                    <span class="text-2xl font-black text-emerald-500/30">01</span>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl border-l-4 border-l-teal-500 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-teal-400 uppercase">2. Sustitución</span>
+                        <h3 class="text-sm font-bold text-white">Sustitución de Limpiadores Sintéticos</h3>
+                        <p class="text-xs text-slate-300">Reemplazar detergentes tradicionales por desengrasantes enzimáticos biodetergentes de secado ultra-rápido.</p>
+                    </div>
+                    <span class="text-2xl font-black text-teal-500/30">02</span>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl border-l-4 border-l-sky-500 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-sky-400 uppercase">3. Controles de Ingeniería</span>
+                        <h3 class="text-sm font-bold text-white">Pisos Antideslizantes y Rejillas de Drenaje</h3>
+                        <p class="text-xs text-slate-300">Instalación de recubrimiento epóxico estructurado corrugado y canaletas perimetrales en zonas húmedas.</p>
+                    </div>
+                    <span class="text-2xl font-black text-sky-500/30">03</span>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl border-l-4 border-l-amber-500 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase">4. Controles Administrativos</span>
+                        <h3 class="text-sm font-bold text-white">Procedimientos Operativos y Detección de Fugas</h3>
+                        <p class="text-xs text-slate-300">Establecimiento de turnos de limpieza inmediata "In Situ" y delimitación visible con pintura termoplástica.</p>
+                    </div>
+                    <span class="text-2xl font-black text-amber-500/30">04</span>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl border-l-4 border-l-rose-500 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-rose-400 uppercase">5. EPP (Menos Efectivo)</span>
+                        <h3 class="text-sm font-bold text-white">Calzado Antideslizante Certificado (SRC)</h3>
+                        <p class="text-xs text-slate-300">Dotación obligatoria de botas de seguridad con suela de poliuretano bidensidad grabado profundo antideslizante.</p>
+                    </div>
+                    <span class="text-2xl font-black text-rose-500/30">05</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: PLAN ESTRATÉGICO DE INTERVENCIÓN -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="12">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 12</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Plan Estratégico de Intervención Sistemática</h2>
+                </div>
+                <div class="px-3 py-1 bg-sky-500/10 border border-sky-500/30 rounded-lg text-sky-400 text-xs font-semibold">
+                    Programa a 12 Meses
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-xl p-5 space-y-3">
+                    <div class="text-xs font-bold text-sky-400 uppercase">Fase I: Inmediata (Mes 1-2)</div>
+                    <h3 class="text-sm font-bold text-white">Control de Emergencia Locativa</h3>
+                    <ul class="text-xs text-slate-300 space-y-1.5">
+                        <li>&bull; Sustitución del 100% del calzado deteriorado por botas certificadas SRC.</li>
+                        <li>&bull; Colocación de bandas antideslizantes fotoluminiscentes en rampas y zonas críticas.</li>
+                        <li>&bull; Campaña intensiva de orden y limpieza (Programa 5S).</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card rounded-xl p-5 space-y-3">
+                    <div class="text-xs font-bold text-amber-400 uppercase">Fase II: Mediano Plazo (Mes 3-6)</div>
+                    <h3 class="text-sm font-bold text-white">Ingeniería e Infraestructura</h3>
+                    <ul class="text-xs text-slate-300 space-y-1.5">
+                        <li>&bull; Aplicación de resina epóxica rugosa en 1.200 m² de piso de procesamiento.</li>
+                        <li>&bull; Instalación de bandejas de goteo bajo bombas de lubricación y freidoras.</li>
+                        <li>&bull; Repotenciación del sistema de iluminación LED alcanzando &gt; 300 lux.</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card rounded-xl p-5 space-y-3">
+                    <div class="text-xs font-bold text-emerald-400 uppercase">Fase III: Sostenibilidad (Mes 7-12)</div>
+                    <h3 class="text-sm font-bold text-white">Cultura y Auditoría Epidemiológica</h3>
+                    <ul class="text-xs text-slate-300 space-y-1.5">
+                        <li>&bull; Auditorías semanales con lista de verificación de adherencia a pisos secos.</li>
+                        <li>&bull; Evaluación de meta: Reducción de la Incidencia Acumulada a IA &lt; 1,0%.</li>
+                        <li>&bull; Monitoreo del 100% de la reincorporación de lesionados con secuelas.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- KPIs Box -->
+            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between text-xs">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-bullseye text-emerald-400 text-2xl"></i>
+                    <div>
+                        <strong class="text-white text-sm block">Meta Epidemiológica del Plan:</strong>
+                        Disminuir la tasa de morbilidad por caídas del <span class="text-amber-400 font-bold">10.0% al 0.5%</span> en el próximo ejercicio anual.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 13: COSTOS DE LA NO PREVENCIÓN -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="13">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 13</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Costos de la No Prevención (Modelo Iceberg)</h2>
+                </div>
+                <div class="px-3 py-1 bg-rose-500/10 border border-rose-500/30 rounded-lg text-rose-400 text-xs font-semibold">
+                    Evaluación Financiera
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Visibles -->
+                <div class="glass-card rounded-xl p-6 space-y-4 border-t-4 border-t-sky-500">
+                    <h3 class="text-base font-bold text-sky-400 uppercase flex items-center gap-2">
+                        <i class="fa-solid fa-eye"></i> Costos Directos (Visibles - 10%)
+                    </h3>
+                    <ul class="text-xs text-slate-300 space-y-3">
+                        <li class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                            <strong class="text-white block">Gastos Médicos y Farmacéuticos:</strong>
+                            Atención de emergencias, radiografías, hospitalización e intervenciones quirúrgicas para los 15 trabajadores.
+                        </li>
+                        <li class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                            <strong class="text-white block">Subsidios e Incapacidades Temporales:</strong>
+                            Pago de días de baja laboral sin contraprestación productiva.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Ocultos -->
+                <div class="glass-card rounded-xl p-6 space-y-4 border-t-4 border-t-rose-500">
+                    <h3 class="text-base font-bold text-rose-400 uppercase flex items-center gap-2">
+                        <i class="fa-solid fa-volcano"></i> Costos Indirectos (Ocultos - 90%)
+                    </h3>
+                    <ul class="text-xs text-slate-300 space-y-3">
+                        <li class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                            <strong class="text-white block">Pérdida de Productividad y Sobrecarga:</strong>
+                            Tiempo dedicado por compañeros a cubrir puestos vacantes y pago de horas extras.
+                        </li>
+                        <li class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                            <strong class="text-white block">Capacitación de Reemplazos:</strong>
+                            Costo de curva de aprendizaje e inducción de personal temporal.
+                        </li>
+                        <li class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                            <strong class="text-white block">Sanciones Administrativas y Daño Reputacional:</strong>
+                            Multas por incumplimiento de normatividad laboral de seguridad locativa.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 14: CONCLUSIONES Y RECOMENDACIONES -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="14">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 14</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Conclusiones Basadas en Evidencia Epidemiológica</h2>
+                </div>
+                <div class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 text-xs font-semibold">
+                    Síntesis Gerencial
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-xl space-y-3">
+                    <div class="text-sky-400 font-bold text-sm uppercase flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie"></i> Diagnóstico Cuantitativo
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        La tasa de morbilidad del <strong>10.0%</strong> y la incidencia del <strong>8.0%</strong> colocan a Alimentos del Valle S.A. en un nivel crítico de vulnerabilidad operativa. Las caídas al mismo nivel representan la causa primaria de días perdidos e incapacidades de la empresa.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl space-y-3">
+                    <div class="text-amber-400 font-bold text-sm uppercase flex items-center gap-2">
+                        <i class="fa-solid fa-handshake-angle"></i> Enfoque Sistémico
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Culpar la "distracción del trabajador" es un error conceptual. El análisis de la tríada demuestra que las condiciones locativas resbaladizas y la falta de pisos antideslizantes son los determinantes causales principales del brote de accidentes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-5 glass-card rounded-xl border border-emerald-500/30 bg-emerald-950/20 space-y-2">
+                <h3 class="text-sm font-bold text-emerald-400 uppercase">Recomendación Prioritaria de Ingeniería</h3>
+                <p class="text-xs text-slate-300">
+                    Aprobar de manera inmediata la inversión en recubrimiento industrial cerámico epóxico con agregado de cuarzo en las áreas de fritado y empaque, complementado con un estricto programa de control de fugas de aceite en origen.
+                </p>
+            </div>
+        </section>
+
+        <!-- SLIDE 15: REFERENCIAS BIBLIOGRÁFICAS (APA 7) -->
+        <section class="slide-content w-full max-w-6xl mx-auto space-y-6 hidden" data-slide="15">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Diapositiva 15</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Referencias Bibliográficas y Normativas (APA 7ª ed.)</h2>
+                </div>
+                <div class="px-3 py-1 bg-sky-500/10 border border-sky-500/30 rounded-lg text-sky-400 text-xs font-semibold">
+                    Sustento Académico
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <!-- Accordion Item 1 -->
+                <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
+                    <button class="w-full p-4 text-left font-bold text-sm text-slate-200 hover:text-sky-400 flex justify-between items-center bg-slate-900/60 accordion-header">
+                        <span><i class="fa-solid fa-book text-sky-400 mr-2"></i> Libros de Texto y Manuales de Epidemiología Ocupacional</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="p-4 text-xs text-slate-300 space-y-2 bg-slate-950 hidden accordion-content">
+                        <p class="pl-4 border-l-2 border-sky-500">
+                            Gordis, L. (2018). <em>Epidemiology</em> (6ª ed.). Elsevier Health Sciences.
+                        </p>
+                        <p class="pl-4 border-l-2 border-sky-500">
+                            Hernández-Aguado, I., Lumbreras, B., & Delgado-Rodríguez, M. (2021). <em>Manual de Epidemiología y Salud Pública para Grados en Ciencias de la Salud</em> (3ª ed.). Editorial Médica Panamericana.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
+                    <button class="w-full p-4 text-left font-bold text-sm text-slate-200 hover:text-sky-400 flex justify-between items-center bg-slate-900/60 accordion-header">
+                        <span><i class="fa-solid fa-building-columns text-emerald-400 mr-2"></i> Organismos Internacionales y Guías Técnicas</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="p-4 text-xs text-slate-300 space-y-2 bg-slate-950 hidden accordion-content">
+                        <p class="pl-4 border-l-2 border-emerald-500">
+                            Organización Internacional del Trabajo [OIT]. (2022). <em>Seguridad y Salud en el Centro del Trabajo: Indicadores Estadísticos y Prevención de Accidentes Ocupacionales</em>. OIT.
+                        </p>
+                        <p class="pl-4 border-l-2 border-emerald-500">
+                            National Institute for Occupational Safety and Health [NIOSH]. (2021). <em>Slip, Trip, and Fall Prevention for Healthcare and Food Processing Workers</em> (DHHS/NIOSH Publication No. 2021-110). U.S. Department of Health and Human Services.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
+                    <button class="w-full p-4 text-left font-bold text-sm text-slate-200 hover:text-sky-400 flex justify-between items-center bg-slate-900/60 accordion-header">
+                        <span><i class="fa-solid fa-vial text-amber-400 mr-2"></i> Artículos Científicos Especializados</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="p-4 text-xs text-slate-300 space-y-2 bg-slate-950 hidden accordion-content">
+                        <p class="pl-4 border-l-2 border-amber-500">
+                            Bell, J. L., Collins, J. W., Wolf, L., & Grönqvist, R. (2019). Evaluation of a comprehensive slip, trip, and fall prevention programme in food processing facilities. <em>Ergonomics</em>, 62(10), 1250–1263. https://doi.org/10.1080/00140139.2019.1643480
+                        </p>
+                        <p class="pl-4 border-l-2 border-amber-500">
+                            Courtney, T. K., Sorock, G. S., Manning, D. P., Collins, J. W., & Holbein-Jenny, M. A. (2020). Occupational slips, trips and falls: Prioritizing research and practice to reduce injury in the workplace. <em>Journal of Safety Research</em>, 32(3), 295–302.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM FOOTER NAVIGATION CONTROLS -->
+    <footer class="glass-header sticky bottom-0 z-40 px-3 py-2.5 md:px-8 flex flex-wrap items-center justify-between gap-2">
+        <button id="prev-btn" class="px-3 py-2 md:px-4 md:py-2 bg-slate-900 hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed border border-slate-800 rounded-xl text-slate-200 text-xs md:text-sm font-semibold flex items-center gap-1.5 md:gap-2 transition">
+            <i class="fa-solid fa-chevron-left"></i> <span class="inline">Anterior</span>
+        </button>
+
+        <div class="text-[11px] md:text-xs text-slate-400 text-center order-3 sm:order-2 w-full sm:w-auto flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3">
+            <span class="font-medium text-slate-300">&copy; 2026 Luis Miguel Guerrero. Reservados todos los derechos.</span>
+            <span class="hidden md:inline text-slate-600">|</span>
+            <span class="hidden md:inline"><kbd class="px-1.5 py-0.5 bg-slate-900 border border-slate-800 rounded text-[10px] text-slate-300">&larr;</kbd> <kbd class="px-1.5 py-0.5 bg-slate-900 border border-slate-800 rounded text-[10px] text-slate-300">&rarr;</kbd> Para navegar</span>
+        </div>
+
+        <button id="next-btn" class="px-3 py-2 md:px-4 md:py-2 bg-sky-600 hover:bg-sky-500 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs md:text-sm font-semibold rounded-xl flex items-center gap-1.5 md:gap-2 transition shadow-lg shadow-sky-600/20 order-2 sm:order-3">
+            <span class="inline">Siguiente</span> <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </footer>
+
+    <!-- GRID MODAL FOR DIRECT SLIDE JUMPING -->
+    <div id="grid-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card w-full max-w-4xl rounded-2xl p-6 space-y-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-th-large text-sky-400"></i> Índice General de Diapositivas
+                </h3>
+                <button id="close-grid-btn" class="p-2 text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3" id="grid-items-container">
+                <!-- Dynamically generated buttons for slides 1 to 15 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const totalSlides = 15;
+            let currentSlide = 1;
+
+            const slideElements = document.querySelectorAll('.slide-content');
+            const currentSlideNumEl = document.getElementById('current-slide-num');
+            const totalSlidesNumEl = document.getElementById('total-slides-num');
+            const progressBar = document.getElementById('progress-bar');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            const gridModal = document.getElementById('grid-modal');
+            const openGridBtn = document.getElementById('open-grid-btn');
+            const closeGridBtn = document.getElementById('close-grid-btn');
+            const gridItemsContainer = document.getElementById('grid-items-container');
+
+            const slideTitles = [
+                "Portada y Contextualización",
+                "Caracterización del Riesgo Locativo",
+                "Indicadores I: Morbilidad Ocupacional",
+                "Indicadores II: Incidencia Acumulada",
+                "Indicadores III: Prevalencia de Período/Puntual",
+                "Tabla Comparativa de Indicadores",
+                "Tríada Epidemiológica Ocupacional",
+                "Historia Natural del Accidente",
+                "Modelo de Causalidad de Reason",
+                "Niveles de Prevención",
+                "Jerarquía de Controles ISO 45001",
+                "Plan Estratégico de Intervención",
+                "Costos de la No Prevención",
+                "Conclusiones y Recomendaciones",
+                "Referencias Bibliográficas APA 7"
+            ];
+
+            // Initialize Grid Jump Items
+            slideTitles.forEach((title, idx) => {
+                const slideNum = idx + 1;
+                const btn = document.createElement('button');
+                btn.className = `p-3 rounded-xl border text-left transition flex flex-col justify-between h-24 ${
+                    slideNum === currentSlide 
+                        ? 'bg-sky-500/20 border-sky-500 text-sky-300' 
+                        : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800 hover:border-slate-700'
+                }`;
+                btn.innerHTML = `
+                    <span class="text-[10px] font-bold text-sky-400 uppercase">Diapo ${String(slideNum).padStart(2, '0')}</span>
+                    <span class="text-xs font-semibold line-clamp-2">${title}</span>
+                `;
+                btn.addEventListener('click', () => {
+                    goToSlide(slideNum);
+                    gridModal.classList.add('hidden');
+                });
+                gridItemsContainer.appendChild(btn);
+            });
+
+            function updateSlideView() {
+                // Hide all
+                slideElements.forEach(el => {
+                    el.classList.add('hidden');
+                    el.classList.remove('slide-enter');
+                });
+
+                // Show current
+                const activeSlide = document.querySelector(`.slide-content[data-slide="${currentSlide}"]`);
+                if (activeSlide) {
+                    activeSlide.classList.remove('hidden');
+                    activeSlide.classList.add('slide-enter');
+                }
+
+                // Update text counter & progress bar
+                currentSlideNumEl.textContent = currentSlide;
+                totalSlidesNumEl.textContent = totalSlides;
+                const progressPct = (currentSlide / totalSlides) * 100;
+                progressBar.style.width = `${progressPct}%`;
+
+                // Navigation buttons disable state
+                prevBtn.disabled = currentSlide === 1;
+                nextBtn.disabled = currentSlide === totalSlides;
+
+                // Update Grid selection styling
+                const gridBtns = gridItemsContainer.querySelectorAll('button');
+                gridBtns.forEach((btn, idx) => {
+                    if (idx + 1 === currentSlide) {
+                        btn.className = "p-3 rounded-xl border text-left transition flex flex-col justify-between h-24 bg-sky-500/20 border-sky-500 text-sky-300";
+                    } else {
+                        btn.className = "p-3 rounded-xl border text-left transition flex flex-col justify-between h-24 bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800 hover:border-slate-700";
+                    }
+                });
+            }
+
+            function goToSlide(num) {
+                if (num >= 1 && num <= totalSlides) {
+                    currentSlide = num;
+                    updateSlideView();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+
+            // Button Event Listeners
+            prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+            nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+            openGridBtn.addEventListener('click', () => gridModal.classList.remove('hidden'));
+            closeGridBtn.addEventListener('click', () => gridModal.classList.add('hidden'));
+
+            // Keyboard Navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'Space') {
+                    goToSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    goToSlide(currentSlide - 1);
+                } else if (e.key === 'Escape') {
+                    gridModal.classList.add('hidden');
+                }
+            });
+
+            // Touch Swipe Gesture Navigation for mobile and tablet devices
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            document.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    goToSlide(currentSlide + 1);
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    goToSlide(currentSlide - 1);
+                }
+            }, { passive: true });
+
+            // Accordion Logic for Slide 15
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('.fa-chevron-down');
+                    
+                    const isOpen = !content.classList.contains('hidden');
+                    
+                    // Close all
+                    document.querySelectorAll('.accordion-content').forEach(c => c.classList.add('hidden'));
+                    document.querySelectorAll('.accordion-header .fa-chevron-down').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                    // Toggle current
+                    if (!isOpen) {
+                        content.classList.remove('hidden');
+                        if (icon) icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+
+            // Initial view setup
+            updateSlideView();
+        });
+    </script>
+</body>
+</html>
